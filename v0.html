@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floguard Seals - Professional Industrial Seals Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for animations and effects */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(214, 158, 46, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(214, 158, 46, 0.6); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9f9f9 0%, #e5e5e5 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #d69e2e, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d69e2e;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8860b;
+        }
+
+        /* Intersection Observer Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700">
+    <!-- Top Bar -->
+    <div class="bg-gray-800 text-white py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center">
+                    <i class="fas fa-phone mr-2 text-yellow-400"></i>
+                    +1 (555) 123-4567
+                </span>
+                <span class="flex items-center">
+                    <i class="fas fa-envelope mr-2 text-yellow-400"></i>
+                    info@floguardseals.com
+                </span>
+            </div>
+            <div class="text-yellow-400 font-semibold">
+                "Sealing Excellence, Delivering Trust"
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-gray-800">
+                        <span class="text-yellow-500">Floguard</span> Seals
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-yellow-500 transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-yellow-500 transition duration-300">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-yellow-500 transition duration-300">Services</a>
+                    <a href="#products" class="text-gray-700 hover:text-yellow-500 transition duration-300">Products</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-yellow-500 transition duration-300">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 hover:text-yellow-500 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-yellow-500">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-yellow-500">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-yellow-500">About</a>
+                <a href="#services" class="block py-2 text-gray-700 hover:text-yellow-500">Services</a>
+                <a href="#products" class="block py-2 text-gray-700 hover:text-yellow-500">Products</a>
+                <a href="#testimonials" class="block py-2 text-gray-700 hover:text-yellow-500">Testimonials</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-yellow-500">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-br from-gray-900 to-gray-700 text-white py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 animate-slide-in-left">
+                        Professional <span class="text-gradient">Industrial Seals</span>
+                    </h1>
+                    <p class="text-xl mb-8 animate-slide-in-left" style="animation-delay: 0.2s;">
+                        Leading supplier of high-quality mechanical shaft seals, bearings, and industrial sealing solutions for all your industrial needs.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 animate-slide-in-left" style="animation-delay: 0.4s;">
+                        <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift animate-pulse-glow">
+                            <i class="fas fa-phone mr-2"></i>Get Quote Now
+                        </button>
+                        <button class="border-2 border-white hover:bg-white hover:text-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition duration-300">
+                            <i class="fas fa-download mr-2"></i>Download Brochure
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 animate-slide-in-right">
+                    <div class="relative">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Industrial Seals" class="rounded-lg shadow-2xl animate-float">
+                        <div class="absolute -top-4 -right-4 bg-yellow-500 text-white p-4 rounded-full animate-pulse-glow">
+                            <i class="fas fa-cog text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Floating shapes -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-yellow-500 opacity-20 rounded-full animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-16 h-16 bg-white opacity-10 rounded-full animate-float" style="animation-delay: 2s;"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">About Floguard Seals</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    Your trusted partner in industrial sealing solutions with years of expertise and commitment to excellence.
+                </p>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 slide-left">
+                    <img src="/placeholder.svg?height=400&width=500" alt="About Us" class="rounded-lg shadow-lg hover-lift">
+                </div>
+                <div class="lg:w-1/2 slide-right">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6">Leading Industrial Seals Supplier</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Floguard Seals has been at the forefront of industrial sealing solutions, providing high-quality products and exceptional service to industries worldwide. Our commitment to innovation and quality has made us a trusted name in the industry.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="text-center">
+                            <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 hover-scale transition duration-300">
+                                <i class="fas fa-award text-yellow-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">Quality Assured</h4>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 hover-scale transition duration-300">
+                                <i class="fas fa-shipping-fast text-yellow-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-800">Fast Delivery</h4>
+                        </div>
+                    </div>
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                        Learn More About Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Why Choose Floguard Seals?</h2>
+                <p class="text-xl text-gray-600 fade-in">Excellence in every aspect of our service and products</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in hover-lift bg-white p-6 rounded-lg shadow-lg">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-certificate text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Certified Quality</h3>
+                    <p class="text-gray-600">ISO certified products meeting international quality standards</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-white p-6 rounded-lg shadow-lg" style="animation-delay: 0.1s;">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-users text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Expert Team</h3>
+                    <p class="text-gray-600">Experienced professionals providing technical support</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-white p-6 rounded-lg shadow-lg" style="animation-delay: 0.2s;">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-clock text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Quick Response</h3>
+                    <p class="text-gray-600">Fast turnaround times for urgent requirements</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-white p-6 rounded-lg shadow-lg" style="animation-delay: 0.3s;">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-handshake text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Trusted Partner</h3>
+                    <p class="text-gray-600">Long-term relationships built on trust and reliability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Product Categories</h2>
+                <p class="text-xl text-gray-600 fade-in">Comprehensive range of industrial sealing solutions</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-cog text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Mechanical Shaft Seals</h3>
+                    <p class="text-gray-600 mb-4">High-performance seals for rotating equipment and machinery applications.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.1s;">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-circle text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Bearing & Lining</h3>
+                    <p class="text-gray-600 mb-4">Durable bearing solutions and protective lining materials for industrial use.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.2s;">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Casing & Wear Rings</h3>
+                    <p class="text-gray-600 mb-4">Protective casing and wear-resistant rings for pump and valve applications.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.3s;">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-gem text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Silicon & Tungsten Carbide</h3>
+                    <p class="text-gray-600 mb-4">Premium materials for extreme conditions and high-performance applications.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.4s;">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-tools text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Custom Solutions</h3>
+                    <p class="text-gray-600 mb-4">Tailored sealing solutions designed for specific industrial requirements.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.5s;">
+                    <div class="bg-yellow-500 w-16 h-16 rounded-lg flex items-center justify-center mb-4 hover-scale transition duration-300">
+                        <i class="fas fa-wrench text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Maintenance Services</h3>
+                    <p class="text-gray-600 mb-4">Professional maintenance and repair services for all sealing systems.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Featured Products</h2>
+                <p class="text-xl text-gray-600 fade-in">Discover our premium range of industrial sealing products</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift transition duration-300 fade-in">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Mechanical Shaft Seal" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Premium Shaft Seal</h3>
+                        <p class="text-gray-600 text-sm mb-4">High-performance mechanical seal for industrial pumps</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-semibold transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift transition duration-300 fade-in" style="animation-delay: 0.1s;">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Industrial Bearing" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Industrial Bearing</h3>
+                        <p class="text-gray-600 text-sm mb-4">Durable bearing solution for heavy-duty applications</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-semibold transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift transition duration-300 fade-in" style="animation-delay: 0.2s;">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Carbide Ring" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Carbide Seal Ring</h3>
+                        <p class="text-gray-600 text-sm mb-4">Tungsten carbide ring for extreme conditions</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-semibold transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift transition duration-300 fade-in" style="animation-delay: 0.3s;">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Wear Ring" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Pump Wear Ring</h3>
+                        <p class="text-gray-600 text-sm mb-4">Protective wear ring for pump efficiency</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-semibold transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button class="bg-gray-800 hover:bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                    View All Products <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Our Services</h2>
+                <p class="text-xl text-gray-600 fade-in">Comprehensive solutions for all your industrial sealing needs</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-search text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Technical Consultation</h3>
+                    <p class="text-gray-600 leading-relaxed">Expert advice on seal selection and application optimization for your specific requirements.</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg" style="animation-delay: 0.1s;">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Fast Delivery</h3>
+                    <p class="text-gray-600 leading-relaxed">Quick turnaround times with reliable logistics to minimize your downtime.</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg" style="animation-delay: 0.2s;">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-tools text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Installation Support</h3>
+                    <p class="text-gray-600 leading-relaxed">Professional installation guidance and on-site support for complex applications.</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg" style="animation-delay: 0.3s;">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Custom Manufacturing</h3>
+                    <p class="text-gray-600 leading-relaxed">Tailored solutions designed and manufactured to meet your unique specifications.</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg" style="animation-delay: 0.4s;">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-headset text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600 leading-relaxed">Round-the-clock technical support for emergency situations and urgent requirements.</p>
+                </div>
+                <div class="text-center fade-in hover-lift bg-gray-50 p-8 rounded-lg" style="animation-delay: 0.5s;">
+                    <div class="bg-yellow-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 hover-scale transition duration-300">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Performance Analysis</h3>
+                    <p class="text-gray-600 leading-relaxed">Comprehensive analysis and optimization of your sealing system performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600 fade-in">Trusted by industry leaders worldwide</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-lift transition duration-300 fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Floguard Seals has been our go-to supplier for over 5 years. Their quality and service are unmatched in the industry."</p>
+                    <div class="flex items-center">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">John Smith</h4>
+                            <p class="text-sm text-gray-600">Operations Manager, ABC Industries</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Exceptional technical support and fast delivery. They helped us solve a critical sealing issue in record time."</p>
+                    <div class="flex items-center">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
+                            <p class="text-sm text-gray-600">Chief Engineer, XYZ Manufacturing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-lift transition duration-300 fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"The custom sealing solution they provided exceeded our expectations. Highly professional team."</p>
+                    <div class="flex items-center">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Mike Davis</h4>
+                            <p class="text-sm text-gray-600">Plant Manager, DEF Corporation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Our Process</h2>
+                <p class="text-xl text-gray-600 fade-in">Simple steps to get the perfect sealing solution</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold hover-scale transition duration-300">1</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Consultation</h3>
+                    <p class="text-gray-600">We analyze your requirements and recommend the best solution</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.1s;">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold hover-scale transition duration-300">2</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Quotation</h3>
+                    <p class="text-gray-600">Receive detailed quotation with specifications and delivery timeline</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.2s;">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold hover-scale transition duration-300">3</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Manufacturing</h3>
+                    <p class="text-gray-600">Quality manufacturing using premium materials and processes</p>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.3s;">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold hover-scale transition duration-300">4</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Delivery</h3>
+                    <p class="text-gray-600">Fast and secure delivery with installation support if needed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Action Section -->
+    <section class="py-20 bg-yellow-500 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4 fade-in">Ready to Get Started?</h2>
+            <p class="text-xl mb-8 fade-in">Contact us today for expert consultation and competitive pricing</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in">
+                <button class="bg-white text-yellow-500 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                    <i class="fas fa-phone mr-2"></i>Call Now: +1 (555) 123-4567
+                </button>
+                <button class="border-2 border-white hover:bg-white hover:text-yellow-500 px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                    <i class="fas fa-envelope mr-2"></i>Send Email
+                </button>
+                <button class="border-2 border-white hover:bg-white hover:text-yellow-500 px-8 py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                    <i class="fas fa-download mr-2"></i>Download Brochure
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Contact Us</h2>
+                <p class="text-xl text-gray-600 fade-in">Get in touch for expert consultation and quotes</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="slide-left">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Name *</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email *</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Company</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Subject</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300">
+                                <option>General Inquiry</option>
+                                <option>Product Quote</option>
+                                <option>Technical Support</option>
+                                <option>Custom Solution</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Message *</label>
+                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition duration-300" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-lg font-semibold transition duration-300 hover-lift">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="slide-right">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Address</h4>
+                                <p class="text-gray-600">123 Industrial Drive<br>Manufacturing District<br>City, State 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-phone text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567<br>+1 (555) 123-4568</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-envelope text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">info@floguardseals.com<br>sales@floguardseals.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-clock text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Business Hours</h4>
+                                <p class="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-800 mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">About Floguard Seals</h3>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Leading supplier of high-quality industrial seals, bearings, and sealing solutions for industries worldwide.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300 hover-scale">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-yellow-400 transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-yellow-400 transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-yellow-400 transition duration-300">Services</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-yellow-400 transition duration-300">Products</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-yellow-400 transition duration-300">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Latest Products Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Latest Products</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Mechanical Shaft Seals</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Bearing & Lining</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Casing & Wear Rings</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Silicon Products</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Tungsten Carbide</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300">Custom Solutions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Subscribe Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Subscribe</h3>
+                    <p class="text-gray-300 mb-4">Stay updated with our latest products and industry news.</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white placeholder-gray-400 transition duration-300">
+                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-semibold transition duration-300 hover-lift">
+                            <i class="fas fa-paper-plane mr-2"></i>Subscribe
+                        </button>
+                    </form>
+                    <div class="mt-6">
+                        <p class="text-gray-300 text-sm mb-2">Download Our Brochure:</p>
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition duration-300 hover-lift">
+                            <i class="fas fa-download mr-2"></i>PDF Brochure
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-300">
+                    &copy; 2024 Floguard Seals. All rights reserved. | 
+                    <span class="text-yellow-400">"Sealing Excellence, Delivering Trust"</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations and Interactions -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+        });
+
+        // Newsletter subscription handler
+        document.querySelector('footer form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+        });
+
+        // Add loading animation to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.type !== 'submit') return;
+                
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('shadow-xl');
+            } else {
+                navbar.classList.remove('shadow-xl');
+            }
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('#home');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Counter animation for statistics (if you want to add them later)
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = Math.floor(current);
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 20);
+        }
+
+        // Add hover sound effect (optional)
+        document.querySelectorAll('.hover-lift').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

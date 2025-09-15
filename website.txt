@@ -1,0 +1,31 @@
+Color theme is : Yellow and gray
+Company Name: Floguard seals 
+
+company is trading of seals item like 
+Mechanical Shaft Seals , 
+Bearing-&-Lining,
+Casing & Wear Rings,
+Silicon & Tungsten Carbide Products,
+Bearing & Lining ...etc
+
+
+i want to build website based on the given information ,
+it should be moder professional website including animation and hover effect ,
+make sure user perspective it should be responsive,
+
+
+i want to make big size of home page including hero section, about section, why choose us section, category section, produst section, services section, our testimonials section, our process section, quick action section, contact form section , download broucher option, footer & social media 
+
+
+use smooth scrolling effect , use illustrator vector shape moving effect at about, hero, call to action or icons
+use fontawesome icon with proper background and color with hover effect 
+
+
+my footer must conatin four column 
+about,quick link, latest product, subscribe
+
+
+my navbar above i want to show cas company mobile and email atleft and at rigth side company slogan
+
+
+create HTML website
