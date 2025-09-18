@@ -1,4 +1,4 @@
-Color theme is : Yellow and gray
+"Color theme is : Yellow and gray
 Company Name: Floguard seals 
 
 company is trading of seals item like 
@@ -28,4 +28,4 @@ about,quick link, latest product, subscribe
 my navbar above i want to show cas company mobile and email atleft and at rigth side company slogan
 
 
-create HTML website
+create HTML website"
