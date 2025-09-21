@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; {{ date('Y') }} Floguard Seals. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Floguard Seals. All rights reserved.  | Developed by : <a target="_blank" href="https://fahad-jadiya.com/" class="text-white">Fahad Jadiya</a></p>
         </div>
     </div>
 </footer>
