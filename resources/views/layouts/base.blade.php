@@ -23,6 +23,10 @@
 
     <link rel="icon" href="{{ asset('storage/' . $profile->favicon)  }}" type="image/x-icon">
     
+
+    {{-- testimonial --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
 </head>
 <body>
     

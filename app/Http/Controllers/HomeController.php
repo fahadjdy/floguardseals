@@ -21,6 +21,7 @@ class HomeController extends Controller
             ->get();
 
         $testimonials =Testimonial::all();
+        
         return view('home',compact('categories','products','testimonials'));
     }
 

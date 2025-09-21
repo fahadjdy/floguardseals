@@ -16,18 +16,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-// hamburger.addEventListener('click', () => {
-//   hamburger.classList.toggle('active');
-//   navMenu.classList.toggle('active');
-// });
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
 
 // Close mobile menu when clicking on a link
-// document.querySelectorAll('.nav-menu a').forEach(link => {
-//   link.addEventListener('click', () => {
-//     hamburger.classList.remove('active');
-//     navMenu.classList.remove('active');
-//   });
-// });
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
 
 
  document.addEventListener("DOMContentLoaded", function () {
@@ -272,3 +272,9 @@ document.querySelector('input[type="tel"]').addEventListener("paste", function (
   pasted = pasted.replace(/^(91|0)/, "")
   this.value = pasted
 })
+
+
+
+
+
+// Testimonial 

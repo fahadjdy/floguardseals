@@ -232,4 +232,69 @@
     <!-- Contact Section -->
     <x-contact-form />
 
+   <!-- Testimonial Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title fade-in visible">
+                <h2>What Our Clients Say</h2>
+                <p>Trusted by industries worldwide for reliable sealing solutions</p>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper testimonial-swiper">
+                <div class="swiper-wrapper">
+                    @foreach($testimonials as $testimonial)
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-text">
+                                    <p>{{ $testimonial->content }}</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->name }}">
+                                    <div>
+                                        <h4>{{ $testimonial->name }}</h4>
+                                        <span>{{ $testimonial->designation ?? 'Client' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Navigation -->
+                <div class="swiper-button-next">
+                    <i class="fa-solid fa-chevron-right fs-4"></i>
+                </div>
+                <div class="swiper-button-prev">
+                    <i class="fa-solid fa-chevron-left fs-4"></i>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    const swiper = new Swiper('.testimonial-swiper', {
+        loop: true,
+        spaceBetween: 30,
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        },
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+        0: { slidesPerView: 1, spaceBetween: 20 },   // mobile
+        768: { slidesPerView: 2, spaceBetween: 25 },  // tablet
+        1024: { slidesPerView: 3, spaceBetween: 30 }, // desktop
+        }
+    });
+    </script>
+
 @endsection
