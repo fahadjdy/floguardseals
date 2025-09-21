@@ -5,11 +5,11 @@
 @section('content')
 
 
- <!-- About Section -->
+    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-title fade-in visible">
-                <h2>About Floguard Seals</h2>
+                <h2>About {{ $profile->name ?? 'FloGuard Seals'}}</h2>
                 <p>Your trusted partner in sealing solutions</p>
             </div>
             <div class="about-content">
@@ -36,12 +36,13 @@
                 <div class="about-image">
                     <div class="floating-icon icon-1"><i class="fas fa-cog"></i></div>
                     <div class="floating-icon icon-2"><i class="fas fa-tools"></i></div>
-                    <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=400&fit=crop"
+                    <img src="{{  asset('img/floguard-about.png') }}"
                         alt="About Us">
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!-- Quick Action Section -->
