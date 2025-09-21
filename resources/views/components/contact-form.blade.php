@@ -1,4 +1,4 @@
-<section id="contact" class="contact">
+<section id="contact" class="contact " style="    background: linear-gradient(135deg, #f7fafc, #edf2f7);">
     <div class="container">
       <div class="section-title fade-in visible">
         <h2>Contact Us</h2>
