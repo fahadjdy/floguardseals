@@ -40,9 +40,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Excellence in Sealing Technology</h3>
-                    <p>With years of experience in the industry, Floguard Seals has established itself as a leading
-                        provider of high-quality sealing solutions. We specialize in mechanical shaft seals, bearing &
-                        lining, and various industrial sealing products.</p>
+                    <p>{{ $profile->about }}</p>
                     <div class="about-features">
                         <div class="feature">
                             <i class="fas fa-award"></i>
