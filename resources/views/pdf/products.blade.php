@@ -13,7 +13,7 @@
 
         /* ✅ Watermark */
         body::before {
-            content: "{{ $profile['company_name'] ?? 'HMH Motors Industry' }}";
+            content: "{{ $profile['company_name'] ?? 'Floguard Industrial Solutions' }}";
             position: fixed;
             top: 35%;
             left: 50%;

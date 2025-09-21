@@ -10,13 +10,13 @@
  <meta name="csrf-token" content="{{ csrf_token() }}">
     
     {{-- For SEO  --}}
-    <meta name="description" content="@yield('meta_description', 'Leading manufacturer of auto rikshaw body parts at best prices. High-quality, durable, and trusted by customers.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'rikshaw parts, auto rikshaw body parts, HMH Motors, spare parts')">
+    <meta name="description" content="@yield('meta_description', '')">
+    <meta name="keywords" content="@yield('meta_keywords', '')">
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:title" content="@yield('title', 'HMH Motors Industry')" />
-    <meta property="og:description" content="@yield('meta_description', 'Premium Rikshaw Body Parts Manufacturer')" />
+    <meta property="og:title" content="@yield('title', 'Floguard Seals - Professional Sealing Solutions')" />
+    <meta property="og:description" content="@yield('meta_description', '')" />
     <meta property="og:image" content="@yield('meta_image', isset($profile->logo) ? asset('storage/' . $profile->logo) : null)" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
