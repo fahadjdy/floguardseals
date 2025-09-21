@@ -10,21 +10,21 @@
             <i class="fas fa-map-marker-alt"></i>
             <div>
               <h3>Address</h3>
-              <p>123 Industrial Avenue<br>Manufacturing District<br>City, State 12345</p>
+              <p>{{ $profile->location ?? '' }}<br>{{ $profile->city  ?? ''}}<br>{{ $profile->state ?? '' }} {{ $profile->pincode  ?? '' }}</p>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-phone"></i>
             <div>
               <h3>Phone</h3>
-              <p>+1 (555) 123-4567</p>
+              <p>+91 {{ $profile->contact ?? '' }}</p>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-envelope"></i>
             <div>
               <h3>Email</h3>
-              <p>info@floguardseals.com</p>
+              <p> {{ $profile->email ?? '' }}</p>
             </div>
           </div>
         </div>
