@@ -23,6 +23,7 @@ class ProductResource extends Resource
             Forms\Components\Select::make('category_id')
                 ->relationship('category', 'name')
                 ->required()
+                ->preload()
                 ->searchable(),
 
             Forms\Components\TextInput::make('name')
@@ -38,6 +39,7 @@ class ProductResource extends Resource
 
             Forms\Components\TextInput::make('slug')
                 ->required()
+                ->readonly()
                 ->unique(ignoreRecord: true),
 
             Forms\Components\Textarea::make('description')
@@ -46,12 +48,6 @@ class ProductResource extends Resource
                 $set('description', $clean);
             }),
 
-            Forms\Components\TextInput::make('price')
-                ->numeric()
-                ->prefix('₹'),
-
-            Forms\Components\TextInput::make('stock')
-                ->numeric(),
 
             Forms\Components\FileUpload::make('images')
                 ->label('Product Images')
@@ -86,8 +82,6 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('category.name')->label('Category')->sortable(),
                 Tables\Columns\ImageColumn::make('primary_image')->label('Primary'),
-                Tables\Columns\TextColumn::make('price')->money('inr'),
-                Tables\Columns\TextColumn::make('stock'),
                 Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y'),
             ])
             ->defaultSort('id', 'desc')
