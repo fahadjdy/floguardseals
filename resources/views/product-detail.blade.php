@@ -4,12 +4,12 @@
 
 @section('content')
     <!-- Breadcrumb -->
-    <div class="bg-gray-100 py-4">
+    <div class="bg-gray-100 mt-4">
         <div class="container mx-auto px-4">
             <nav class="flex items-center space-x-2 text-sm">
-                <a href="index.html" class="text-gray-600 hover:text-yellow-600 transition duration-300">Home</a>
+                <a href="{{ url('/') }}" class="text-gray-600 hover:text-yellow-600 transition duration-300">Home</a>
                 <i class="fas fa-chevron-right text-gray-400"></i>
-                <a href="index.html#products" class="text-gray-600 hover:text-yellow-600 transition duration-300">Products</a>
+                <a href="{{ url('/products') }}" class="text-gray-600 hover:text-yellow-600 transition duration-300">Products</a>
                 <i class="fas fa-chevron-right text-gray-400"></i>
                 <span class="text-yellow-600 font-semibold">Premium Mechanical Shaft Seal</span>
             </nav>
