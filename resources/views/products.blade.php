@@ -19,6 +19,8 @@
                     <!-- Product Card -->
                         @foreach ($products as $product)
                                 <div class="product-card">
+                                    <a href="{{ url('/product-detail/' . $product->slug) }}">
+
                                         <img src="{{ asset('storage/' . $product->primary_image) }}" alt="Mechanical Shaft Seal">
                                         <div class="product-content">
                                             <h3>{{ $product->name }}</h3>
@@ -29,6 +31,7 @@
                                                 </a>
                                             </button>
                                         </div>
+                                        </a>
                                     </div>
                         @endforeach
 

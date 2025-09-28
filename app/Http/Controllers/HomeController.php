@@ -55,5 +55,10 @@ class HomeController extends Controller
         return view('products', compact('products','categories'));
     }
 
+    public function productDetail($slug){
+        $categories = Category::all(); // Fetch all categories for footer
+        $productDetail = Product::where('slug', $slug)->firstOrFail();
+        return view('product-detail',compact('categories','productDetail'));
+    }
 
 }

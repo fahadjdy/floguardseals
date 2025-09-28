@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName($companyName)
+            ->favicon(asset('storage/company/01K5P0ZS0B8Y9G70K03MQ53VZ9.png'))
             ->login()
             ->colors([
                   'primary' => '#133e49ff',  

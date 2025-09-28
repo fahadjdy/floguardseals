@@ -42,11 +42,22 @@ class ProductResource extends Resource
                 ->readonly()
                 ->unique(ignoreRecord: true),
 
-            Forms\Components\Textarea::make('description')
-            ->afterStateUpdated(function (callable $set, $state) {
-                $clean = strip_tags($state);   // removes all HTML tags
-                $set('description', $clean);
-            }),
+            Forms\Components\RichEditor::make('description')
+                ->label('Description')
+                ->toolbarButtons([
+                    'bold',
+                    'italic',
+                    'strike',
+                    'link',
+                    'orderedList',
+                    'bulletList',
+                    'blockquote',
+                    'codeBlock',
+                    'h2',
+                    'h3',
+                ])
+                ->columnSpanFull()
+                ->maxLength(5000),
 
 
             Forms\Components\FileUpload::make('images')

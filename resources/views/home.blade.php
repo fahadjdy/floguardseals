@@ -163,6 +163,7 @@
 
                     @foreach ($products as $key => $product)
                             <div class="product-card">
+                                  <a href="{{ url('/product-detail/' . $product->slug) }}">
                                     <img src="{{ asset('storage/' . $product->primary_image) }}" alt="Mechanical Shaft Seal">
                                     <div class="product-content">
                                         <h3>{{ $product->name }}</h3>
@@ -173,6 +174,7 @@
                                             </a>
                                         </button>
                                     </div>
+                                  </a>
                                 </div>
 
                                  @if ($key == 3) @break  @endif
@@ -248,7 +250,9 @@
                                     <p>{{ $testimonial->content }}</p>
                                 </div>
                                 <div class="testimonial-author">
+                                    @if($testimonial->image != null)
                                     <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->name }}">
+                                    @endif
                                     <div>
                                         <h4>{{ $testimonial->name }}</h4>
                                         <span>{{ $testimonial->designation ?? 'Client' }}</span>

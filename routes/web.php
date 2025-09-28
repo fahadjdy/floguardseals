@@ -15,6 +15,9 @@ Route::get('/category/{slug}', [HomeController::class, 'category'])->name('categ
 Route::get('/product/{slug}', [HomeController::class, 'product'])->name('product');
 
 Route::get('/products', [HomeController::class, 'products'])->name('products');
+// product detail slug will be passed
+Route::get('/product-detail/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
+
 
 
 Route::get('/products/brochure', [ProductPdfController::class, 'generate'])

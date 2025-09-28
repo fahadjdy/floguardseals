@@ -20,16 +20,18 @@
                     
                         @foreach ($products as $product)
                                 <div class="product-card">
-                                    <img loading="lazy" src="{{ asset('storage/' . $product->primary_image) }}" alt="Mechanical Shaft Seal">
-                                    <div class="product-content">
-                                        <h3>{{ $product->name }}</h3>
-                                        <p>{{ $product->category->name }}</p>
-                                        <button>
-                                            <a href="https://wa.me/{{ $profile->contact }}?text=I'm%20interested%20in%20the%20product:%20{{ urlencode($product->name) }}" target="_blank" rel="noopener noreferrer">
-                                                Inquiry Now
-                                            </a>
-                                        </button>
-                                    </div>
+                                    <a href="{{ url('/product-detail/' . $product->slug) }}">
+                                        <img loading="lazy" src="{{ asset('storage/' . $product->primary_image) }}" alt="Mechanical Shaft Seal">
+                                        <div class="product-content">
+                                            <h3>{{ $product->name }}</h3>
+                                            <p>{{ $product->category->name }}</p>
+                                            <button>
+                                                <a href="https://wa.me/{{ $profile->contact }}?text=I'm%20interested%20in%20the%20product:%20{{ urlencode($product->name) }}" target="_blank" rel="noopener noreferrer">
+                                                    Inquiry Now
+                                                </a>
+                                            </button>
+                                        </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
